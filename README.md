@@ -30,12 +30,12 @@
 ```
 
 ##開發工具
-⋅⋅⋅* Visual Studio Code 
-⋅⋅⋅* Node.js v14.16.0
-⋅⋅⋅* Express.js v4.16.4
-⋅⋅⋅* Express-handlebars v6.0.6
+* Visual Studio Code 
+* Node.js v14.16.0
+* Express.js v4.16.4
+* Express-handlebars v6.0.6
 
 ##參考
-⋅⋅⋅* [餐廳列表](https://drive.google.com/open?id=1W-BD9-c8zJRYCwAD8yhqQdLwcUdN8GZi)
-⋅⋅⋅* [餐廳列表樣板](https://codepen.io/alpha-camp/pen/yrLbrZ)
-⋅⋅⋅* [餐廳詳情樣板](https://codepen.io/alpha-camp/pen/JVjNgG)
+* [餐廳列表](https://drive.google.com/open?id=1W-BD9-c8zJRYCwAD8yhqQdLwcUdN8GZi)
+* [餐廳列表樣板](https://codepen.io/alpha-camp/pen/yrLbrZ)
+* [餐廳詳情樣板](https://codepen.io/alpha-camp/pen/JVjNgG)
