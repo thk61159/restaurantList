@@ -1,17 +1,24 @@
 {
-  "name": "express_basic",
+  "name": "restaurantList",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thk61159/AC-restaurantList.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thk61159/AC-restaurantList/issues"
+  },
+  "homepage": "https://github.com/thk61159/AC-restaurantList#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-handlebars": "^6.0.6"
   }
 }
