@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     .catch((error) => console.error(error));
 });
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword;
+  const keyword = req.query.keyword.trim();
   //大踩坑查了好久
   //https://www.mongodb.com/docs/manual/reference/operator/query/regex/
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
