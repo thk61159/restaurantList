@@ -7,11 +7,11 @@ const listSchema = new Schema({
   },
   name_en: {
     type: String,
-    required: true,
+    required: false,
   },
   category: {
     type: String,
-    required: true,
+    required: false,
   },
   image: {
     type: String,
@@ -27,11 +27,11 @@ const listSchema = new Schema({
   },
   google_map: {
     type: String,
-    required: true,
+    required: false,
   },
   rating: {
     type: String,
-    required: true,
+    required: false,
   },
   description: {
     type: String,

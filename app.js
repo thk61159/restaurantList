@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+app.use(express.urlencoded({ extended: true }));
 //template engine
 const { engine } = require('express-handlebars');
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }));
@@ -53,6 +54,65 @@ app.get('/restaurants/:id', (req, res) => {
     .lean()
     .then((list) => res.render('detail', { list }))
     .catch((error) => console.log(error));
+});
+
+app.get('/new', (req, res) => {
+  console.log('test');
+  return res.render('new');
+});
+app.get('/:id/edit', (req, res) => {
+  const id = req.params.id;
+  return List.findById(id)
+    .lean()
+    .then((list) => res.render('edit', { list }))
+    .catch((error) => console.log(error));
+});
+
+app.post('/restaurants', (req, res) => {
+  const reqBody = req.body;
+  // res.send('sss')
+  const list = new List({
+    name:reqBody.name,
+    name_en:reqBody.name_en,
+    category:reqBody.category,
+    image:reqBody.image,
+    location:reqBody.location,
+    phone:reqBody.phone,
+    google_map:reqBody.google_map,
+    rating:reqBody.rating,
+    description:reqBody.description,
+  });
+  return list
+    .save()
+    .then(() => res.redirect('/'))
+    .catch((error) => console.error(error));
+});
+app.post('/:id/edit', (req, res) => {
+  const id = req.params.id;
+  const reqBody = req.body;
+  return List.findById(id)
+    .then((list) => {
+      list.name = reqBody.name;
+      list.name_en = reqBody.name_en;
+      list.category = reqBody.category;
+      list.image = reqBody.image;
+      list.location = reqBody.location;
+      list.phone = reqBody.phone;
+      list.google_map = reqBody.google_map;
+      list.rating = reqBody.rating;
+      list.description = reqBody.description;
+      return list.save();
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch((error) => console.error(error));
+});
+
+app.post('/:id/delete', (req, res) => {
+  const id = req.params.id;
+  return List.findById(id)
+    .then((list) => list.remove())
+    .then(() => res.redirect(`/`))
+    .catch((error) => console.error(error));
 });
 
 // start and listen on the Express server
