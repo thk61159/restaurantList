@@ -14,11 +14,11 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 //database
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}); 
+});
 //資料庫連線狀態
 const db = mongoose.connection;
 db.on('error', () => {
@@ -27,8 +27,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!');
 });
-const List = require('./models/list')
-comsole.log(List)
+const List = require('./models/list');
 //////////////////////////////
 app.get('/', (req, res) => {
   List.find()
@@ -38,18 +37,22 @@ app.get('/', (req, res) => {
 });
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword;
-  console.log(keyword);
- 
-  const searchedRestaurant = restaurantList.results.filter((e) =>
-    e.name.toLowerCase().includes(keyword.toLowerCase())
-  );
-  res.render('index', { restaurantList: searchedRestaurant, keyword: keyword });
+  //大踩坑查了好久
+  //https://www.mongodb.com/docs/manual/reference/operator/query/regex/
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+  //https://stackoverflow.com/questions/26699885/how-can-i-use-a-regex-variable-in-a-query-for-mongodb
+  List.find({ name: new RegExp(keyword, 'i') })
+    .lean()
+    .then((list) => res.render('index', { list, keyword }))
+    .catch((error) => console.error(error));
 });
+
 app.get('/restaurants/:id', (req, res) => {
-  const showRestaurant = restaurantList.results.find(
-    (e) => e.id.toString() === req.params.id
-  );
-  res.render('show', { showRestaurant: showRestaurant });
+  const id = req.params.id;
+  return List.findById(id)
+    .lean()
+    .then((list) => res.render('detail', { list }))
+    .catch((error) => console.log(error));
 });
 
 // start and listen on the Express server
