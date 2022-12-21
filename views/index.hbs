@@ -31,7 +31,11 @@
     <div class='col-md-10 col-12 mx-auto'>
       <div class='row row-cols-sm-3'>
         {{#each list}}
-          <a href='./restaurants/{{this._id}}' class='text-secondary' style="display: block;">
+          <a
+            href='./restaurants/{{this._id}}'
+            class='text-secondary'
+            style='display: block;'
+          >
             <div class='card mb-3'>
               <img
                 class='card-img-top'
@@ -54,26 +58,30 @@
                   <i class='fas fa-star fa-xs'></i>
                 </span>
                 <span>detail</span>
-                <form action="./{{this._id}}/edit" method="get" style='display: inline;'><button
-                      type='submit'
-                      style='display: inline; text-decoration: none; border: none;background-color:white;'
-                    ><i class="fa-solid fa-pen"></i>
-                    </button></form>
                 <form
-                    action='./{{this._id}}/delete'
-                    method='POST'
-                    style='display: inline;'
-                  >
-                    <button
-                      type='submit'
-                      style='display: inline; text-decoration: none; border: none;background-color:white;'
-                    ><i class='fa-solid fa-trash'></i>
-                    </button>
-                  </form>
+                  action='./{{this._id}}/edit'
+                  method='get'
+                  style='display: inline;'
+                ><button
+                    type='submit'
+                    style='display: inline; text-decoration: none; border: none;background-color:white;'
+                  ><i class='fa-solid fa-pen'></i>
+                  </button></form>
+                <form
+                  action='./{{this._id}}/delete'
+                  method='POST'
+                  style='display: inline;'
+                >
+                  <button
+                    type='submit'
+                    style='display: inline; text-decoration: none; border: none;background-color:white;'
+                  ><i class='fa-solid fa-trash'></i>
+                  </button>
+              
+                </form>
               </div>
             </div>
           </a>
-
         {{/each}}
         <a href='./new' class='text-secondary'>
           <div class='card mb-3'>

@@ -1,33 +1,19 @@
-//express
+//////////import//////////
 const express = require('express');
+const { engine } = require('express-handlebars');
+require('./config/mongoose')
+//////////setting//////////
 const app = express();
 const port = 3000;
 app.use(express.urlencoded({ extended: true }));
-//template engine
-const { engine } = require('express-handlebars');
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.set('views', './views');
 //static file
 app.use(express.static('public'));
-//環境變數
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-//database
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-//資料庫連線狀態
-const db = mongoose.connection;
-db.on('error', () => {
-  console.log('mongodb error!');
-});
-db.once('open', () => {
-  console.log('mongodb connected!');
-});
+
+
+
 const List = require('./models/list');
 //////////////////////////////
 app.get('/', (req, res) => {
@@ -38,10 +24,6 @@ app.get('/', (req, res) => {
 });
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim();
-  //大踩坑查了好久
-  //https://www.mongodb.com/docs/manual/reference/operator/query/regex/
-  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
-  //https://stackoverflow.com/questions/26699885/how-can-i-use-a-regex-variable-in-a-query-for-mongodb
   List.find({ name: new RegExp(keyword, 'i') })
     .lean()
     .then((list) => res.render('index', { list, keyword }))
@@ -69,19 +51,8 @@ app.get('/:id/edit', (req, res) => {
 });
 
 app.post('/restaurants', (req, res) => {
-  const reqBody = req.body;
-  // res.send('sss')
-  const list = new List({
-    name:reqBody.name,
-    name_en:reqBody.name_en,
-    category:reqBody.category,
-    image:reqBody.image,
-    location:reqBody.location,
-    phone:reqBody.phone,
-    google_map:reqBody.google_map,
-    rating:reqBody.rating,
-    description:reqBody.description,
-  });
+  const reqBody = req.body
+  const list = new List({ ...req.body });
   return list
     .save()
     .then(() => res.redirect('/'))
@@ -89,18 +60,28 @@ app.post('/restaurants', (req, res) => {
 });
 app.post('/:id/edit', (req, res) => {
   const id = req.params.id;
-  const reqBody = req.body;
+  const {
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  } = req.body;
   return List.findById(id)
     .then((list) => {
-      list.name = reqBody.name;
-      list.name_en = reqBody.name_en;
-      list.category = reqBody.category;
-      list.image = reqBody.image;
-      list.location = reqBody.location;
-      list.phone = reqBody.phone;
-      list.google_map = reqBody.google_map;
-      list.rating = reqBody.rating;
-      list.description = reqBody.description;
+      name = name;
+      name_en = name_en;
+      category = category;
+      image = image;
+      location = location;
+      phone = phone;
+      google_map = google_map;
+      rating = rating;
+      description = description;
       return list.save();
     })
     .then(() => res.redirect(`/restaurants/${id}`))
