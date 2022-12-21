@@ -5,19 +5,10 @@
       <form action='/search'>
         <h4 class='mb-2'>尋找餐廳：</h4>
         <div class='input-group'>
-          <input
-            type='text'
-            name='keyword'
-            class='form-control'
-            placeholder='輸入餐廳、分類'
-            aria-label='Restaurant Name...'
-            value='{{keyword}}'
-            aria-describedby='search-button'
-          />
+          <input type='text' name='keyword' class='form-control' placeholder='輸入餐廳、分類' aria-label='Restaurant Name...'
+            value='{{keyword}}' aria-describedby='search-button' />
           <div class='input-group-append'>
-            <button class='btn btn-major' type='submit' id='search-button'><i
-                class='fas fa-search'
-              ></i></button>
+            <button class='btn btn-major' type='submit' id='search-button'><i class='fas fa-search'></i></button>
           </div>
         </div>
       </form>
@@ -31,65 +22,40 @@
     <div class='col-md-10 col-12 mx-auto'>
       <div class='row row-cols-sm-3'>
         {{#each list}}
-          <a
-            href='./restaurants/{{this._id}}'
-            class='text-secondary'
-            style='display: block;'
-          >
-            <div class='card mb-3'>
-              <img
-                class='card-img-top'
-                src='{{this.image}}'
-                alt='{{this.name}}'
-              />
-              <div class='card-body p-3'>
-                <h6 class='card-title mb-1'>{{this.name}}</h6>
-
-                <div class='restaurant-category mb-1'>
-                  <i class='fas fa-utensils pr-2'></i>
-                  {{this.category}}
-                </div>
-
-                <span
-                  class='badge badge-pill badge-danger font-weight-normal'
-                  style='color: black;'
-                >
-                  {{this.rating}}
-                  <i class='fas fa-star fa-xs'></i>
-                </span>
-                <span>detail</span>
-                <form
-                  action='./{{this._id}}/edit'
-                  method='get'
-                  style='display: inline;'
-                ><button
-                    type='submit'
-                    style='display: inline; text-decoration: none; border: none;background-color:white;'
-                  ><i class='fa-solid fa-pen'></i>
-                  </button></form>
-                <form
-                  action='./{{this._id}}/delete'
-                  method='POST'
-                  style='display: inline;'
-                >
-                  <button
-                    type='submit'
-                    style='display: inline; text-decoration: none; border: none;background-color:white;'
-                  ><i class='fa-solid fa-trash'></i>
-                  </button>
-              
-                </form>
-              </div>
-            </div>
-          </a>
-        {{/each}}
-        <a href='./new' class='text-secondary'>
+        <a href='./lists/{{this._id}}' class='text-secondary' style='display: block;'>
           <div class='card mb-3'>
-            <img
-              class='card-img-top'
-              src='https://www.iconspng.com/images/plus-icon/plus-icon.jpg'
-              alt='按一下新增餐廳'
-            />
+            <img class='card-img-top' src='{{this.image}}' alt='{{this.name}}' />
+            <div class='card-body p-3'>
+              <h6 class='card-title mb-1'>{{this.name}}</h6>
+
+              <div class='restaurant-category mb-1'>
+                <i class='fas fa-utensils pr-2'></i>
+                {{this.category}}
+              </div>
+
+              <span class='badge badge-pill badge-danger font-weight-normal' style='color: black;'>
+                {{this.rating}}
+                <i class='fas fa-star fa-xs'></i>
+              </span>
+              <span>detail</span>
+              <form action='/lists/{{this._id}}/edit' method='get' style='display: inline;'><button type='submit'
+                  style='display: inline; text-decoration: none; border: none;background-color:white;'><i
+                    class='fa-solid fa-pen'></i>
+                </button></form>
+              <form action='/lists/{{this._id}}?_method=DELETE' method='POST' style='display: inline;'>
+                <button type='submit'
+                  style='display: inline; text-decoration: none; border: none;background-color:white;'><i
+                    class='fa-solid fa-trash'></i>
+                </button>
+
+              </form>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+        <a href='./newItem' class='text-secondary'>
+          <div class='card mb-3'>
+            <img class='card-img-top' src='https://www.iconspng.com/images/plus-icon/plus-icon.jpg' alt='按一下新增餐廳' />
             <div class='card-body p-3'>
               <h6 class='card-title mb-1'>按一下新增餐廳</h6>
 

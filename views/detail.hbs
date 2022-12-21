@@ -2,24 +2,18 @@
 <div class='container'>
   <div class='row'>
     <div class='col-12 col-md-10 mx-auto'>
-      
-      <p class='mb-1' style="display: inline;">
+
+      <p class='mb-1' style='display: inline;'>
         <span class='text-secondary'>
           <i class='fas fa-utensils pr-2'></i>
           類別：
         </span>
         {{list.category}}
       </p>
-      <a href='../../{{list._id}}/edit' style='text-decoration:none'><i class='fa-solid fa-pen'></i></a>
-      <form
-        action='../../{{list._id}}/delete'
-        method='POST'
-        style='display: inline;'
-      >
-        <button
-          type='submit'
-          style='display: inline; text-decoration: none; border: none;background-color:white;'
-        ><i class='fa-solid fa-trash'></i>
+      <a href='/lists/{{list._id}}/edit' style='text-decoration:none'><i class='fa-solid fa-pen'></i></a>
+      <form action='/lists/{{list._id}}?_method=DELETE' method='POST' style='display: inline;'>
+        <button type='submit' style='display: inline; text-decoration: none; border: none;background-color:white;'><i
+            class='fa-solid fa-trash'></i>
         </button>
       </form>
 
@@ -46,12 +40,8 @@
         {{list.description}}
       </p>
 
-      <img
-        class='rounded mx-auto d-block mb-4 w-100'
-        src='{{list.image}}'
-        alt='{{list.name}}'
-        style='max-width: 600px;'
-      />
+      <img class='rounded mx-auto d-block mb-4 w-100' src='{{list.image}}' alt='{{list.name}}'
+        style='max-width: 600px;' />
 
     </div>
   </div>

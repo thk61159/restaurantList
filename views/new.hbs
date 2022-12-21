@@ -1,12 +1,14 @@
-<form action='/restaurants' method='POST' style="margin: 10px 42%;">
-  <div><input type='text' name='name' placeholder='name' size="40" required/></div>
-  <div><input type='text' name='name_en' placeholder='name_en' size="40" required/></div>
-  <div><input type='text' name='category' placeholder='category' size="40" required/></div>
-  <div><input type='text' name='image' placeholder='image' size="40" required/></div>
-  <div><input type='text' name='location' placeholder='location' value="{{ list.location }}" size="40" required/></div>
- <div> <input type='text' name='phone' placeholder='phone' size="40" required/></div>
-  <div><input type='text' name='google_map' placeholder='google_map' size="40" required/></div>
-  <div><input type='text' name='rating' placeholder='rating' size="40" required/></div>
-  <div><input type='text' name='description' placeholder='description' size="40" required/></div>
-  <button type='submit'>creat</button>
+<form action='/lists' method='POST' style='margin: 10px 42%;'>
+  <div><input type='text' name='name' placeholder='name' size='40' required /></div>
+  <div><input type='text' name='name_en' placeholder='name_en' size='40' required /></div>
+  <div><input type='text' name='category' placeholder='category' size='40' required /></div>
+  <div><input type='text' name='image' placeholder='image' size='40' required /></div>
+  <div><input type='text' name='location' placeholder='location' value='{{list.location}}' size='40' required /></div>
+  <div>
+    <input type='text' name='phone' placeholder='phone' size='40' required />
+  </div>
+  <div><input type='text' name='google_map' placeholder='google_map' size='40' required /></div>
+  <div><input type='text' name='rating' placeholder='rating' size='40' required /></div>
+  <div><input type='text' name='description' placeholder='description' size='40' required /></div>
+  <button type='submit'>create</button>
 </form>
