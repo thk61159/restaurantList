@@ -8,6 +8,7 @@
 4. 新增餐廳
 5. 編輯餐廳
 6. 刪除餐廳
+7. 排序功能
 
 ## 使用介面
 ![alt 使用介面圖示](https://raw.githubusercontent.com/thk61159/AC-restaurantList/master/2-3%20A1%E9%A4%90%E5%BB%B3.png "我的餐廳清單使用介面")
@@ -28,6 +29,7 @@ MONGODB_URI=mongodb+srv://使用者帳號:使用者密碼@資料庫伺服器位�
  npm i express-handlebars@6.0.6
  npm i mongoose@5.9.7
  npm i dotenv -D
+ npm install method-override@3.0.0
 ```
 5. 建立.env檔並輸入
 MONGODB_URI=mongodb+srv://使用者帳號:使用者密碼@資料庫伺服器位置ip/你建立的資料庫名稱?retryWrites=true&w=majority
@@ -51,6 +53,7 @@ node models/seeds/listSeeder.js
 * Express-handlebars v6.0.6
 * MongoDB
 * mongoose v5.9.7
+* method-override v3.0.0
 
 ##參考
 * [餐廳列表](https://drive.google.com/open?id=1W-BD9-c8zJRYCwAD8yhqQdLwcUdN8GZi)

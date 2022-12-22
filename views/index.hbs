@@ -1,6 +1,6 @@
-<div class="d-flex">
+<div class='container d-flex justify-content-around'>
   <!-- search bar -->
-  <div class='container search-bar'>
+  <div class=' search-bar'>
     <div class='search-bar-outer'>
       <div class='search-bar-inner'>
         <form action='/search'>
@@ -16,14 +16,14 @@
     </div>
   </div>
   <!-- sort bar -->
-  <div class="dropdown">
-    <form action='/sort' method="get">
-      <select class="form-select" aria-label="Default select example" name="sortMethod" onchange="this.form.submit()" >
+  <div class='dropdown'>
+    <form action='/sort' method='get'>
+      <select class='form-select' aria-label='Default select example' name='sortMethod' onchange='this.form.submit()'>
         <option selected>Open this select menu</option>
-        <option value="alphabet" >字母排序</option>
-        <option value="category" >類別</option>
-        <option value="region">地區</option>
-        <option value="score">分數</option>
+        <option value='alphabet'>字母排序</option>
+        <option value='category'>類別</option>
+        <option value='region'>地區</option>
+        <option value='score'>分數</option>
       </select>
     </form>
   </div>
