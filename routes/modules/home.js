@@ -30,7 +30,7 @@ router.get('/sort', (req, res) => {
   List.find()
     .lean()
     .sort(sortRule)
-    .then((list) => res.render('index', { list }))
+    .then((list) => res.render('index', { list, sortMethod }))
     .catch((error) => console.error(error));
 });
 

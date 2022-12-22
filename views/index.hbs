@@ -18,8 +18,8 @@
   <!-- sort bar -->
   <div class='dropdown'>
     <form action='/sort' method='get'>
-      <select class='form-select' aria-label='Default select example' name='sortMethod' onchange='this.form.submit()'>
-        <option selected>Open this select menu</option>
+      <select class='form-select' aria-label='Default select example' name='sortMethod' onchange='this.form.submit()' >
+        <option selected>{{#if sortMethod}}{{sortMethod}}{{else}}Open this select menu{{/if}}</option>
         <option value='alphabet'>字母排序</option>
         <option value='category'>類別</option>
         <option value='region'>地區</option>
