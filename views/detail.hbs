@@ -10,10 +10,10 @@
         </span>
         {{list.category}}
       </p>
-      <a href='/lists/{{list._id}}/edit' style='text-decoration:none'><i class='fa-solid fa-pen'></i></a>
+      <span style='color:white'>_</span>
+      <a href='/lists/{{list._id}}/edit' class='text-info btn'><i class='fa-solid fa-pen'></i></a>
       <form action='/lists/{{list._id}}?_method=DELETE' method='POST' style='display: inline;'>
-        <button type='submit' style='display: inline; text-decoration: none; border: none;background-color:white;'><i
-            class='fa-solid fa-trash'></i>
+        <button type='submit' class='text-danger btn'><i class='fa-solid fa-trash'></i>
         </button>
       </form>
 

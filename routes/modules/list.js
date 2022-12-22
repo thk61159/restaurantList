@@ -2,7 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 const List = require('../../models/list');
-
+console.log(List);
+//localhost:3000/lists/newItem
+router.get('/newItem', (req, res) => {
+  const { schema } = List;
+  const { tree } = schema;
+  const title = Object.keys(tree).slice(0, 9);
+  console.log(tree);
+  return res.render('new', { title });
+});
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
@@ -12,17 +20,16 @@ router.get('/:id', (req, res) => {
     .catch((error) => console.log(error));
 });
 
-//localhost:3000/lists/newItem
-router.get('/newItem', (req, res) => {
-  console.log('test');
-  return res.render('new');
-});
-
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id;
   return List.findById(id)
     .lean()
-    .then((list) => res.render('edit', { list }))
+    .then((list) => {
+      const displayList = { ...list };
+      delete displayList._id;
+      delete displayList.__v;
+      return res.render('edit', { list, displayList });
+    })
     .catch((error) => console.log(error));
 });
 

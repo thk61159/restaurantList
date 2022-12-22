@@ -2,7 +2,7 @@ const restaurantJson = require('../../restaurant.json');
 const restaurantList = restaurantJson.results;
 const List = require('../list'); // 載入 todo model
 const db = require('../../config/mongoose');
-db.once('open', () => {git add .
+db.once('open', () => {
   restaurantList.forEach((element) => {
     return List.create({
       name: element.name,
