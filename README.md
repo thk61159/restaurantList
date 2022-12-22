@@ -11,7 +11,7 @@
 7. 排序功能
 
 ## 使用介面
-![alt 使用介面圖示](https://raw.githubusercontent.com/thk61159/AC-restaurantList/master/2-3%20A1%E9%A4%90%E5%BB%B3.png "我的餐廳清單使用介面")
+![alt 使用介面圖示](https://raw.githubusercontent.com/thk61159/AC-restaurantList/master/%E9%A4%90%E5%BB%B3CRUD%20improved.png "我的餐廳清單使用介面")
 
 ## 如何使用
 1. 開啟終端機(terminal)，輸入如下將專案複製到電腦中
