@@ -15,6 +15,7 @@ db.on('error', () => {
 });
 db.once('open', () => {
   console.log('mongodb connected!');
+  mongoose.set('debug', true);//查看操作
 });
 
 module.exports = db;
