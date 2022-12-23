@@ -3,7 +3,7 @@ const router = express.Router();
 
 const home = require('./modules/home');
 router.use('/', home);
-const list = require('./modules/list');
-router.use('/lists', list);
+const list = require('./modules/restaurants');
+router.use('/restaurants', list);
 
 module.exports = router;

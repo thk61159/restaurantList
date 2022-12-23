@@ -3,7 +3,7 @@ const router = express.Router();
 
 const List = require('../../models/list');
 console.log(List);
-//localhost:3000/lists/newItem
+//localhost:3000/restaurants/newItem
 router.get('/newItem', (req, res) => {
   const { schema } = List;
   const { tree } = schema;
@@ -68,7 +68,7 @@ router.put('/:id', (req, res) => {
       list.description = description;
       return list.save();
     })
-    .then(() => res.redirect(`/lists/${id}`))
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch((error) => console.error(error));
 });
 
