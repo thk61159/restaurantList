@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const User = require('../../models/user');
 const passport = require('passport'); //POST login authenticator
-const bcrypt = require('bcryptjs');; //POST register hash password
+const bcrypt = require('bcryptjs'); //POST register hash password
 
 router.get('/login', (req, res) => {
-  res.render('login');
+  const { note } = req.query;
+  res.render('login', { note });
 });
 router.post(
   '/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login',
+    failureRedirect: '/users/login/?note=帳號或密碼錯誤',
   })
 );
 router.get('/register', (req, res) => {
@@ -18,6 +19,7 @@ router.get('/register', (req, res) => {
 });
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
+  
   User.findOne({ email })
     .then((e) => {
       console.log(e);
@@ -40,11 +42,17 @@ router.post('/register', (req, res) => {
               password: hash,
             })
           )
-          .then(() => res.redirect('/'))
+          .then(() => res.redirect('/users/login'))
           .catch((e) => console.log(e));
       }
     })
     .catch((e) => console.log(e));
 });
 
+router.get('/logout', (req, res) => {
+  req.logout(req.user, (err) => {
+    if (err) return next(err);
+    res.redirect('/users/login/?note=已登出');
+  });
+});
 module.exports = router;

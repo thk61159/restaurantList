@@ -1,4 +1,4 @@
-<html lang='en'>
+<html>
 
 <head>
   <meta charset='UTF-8' />
@@ -7,7 +7,7 @@
   <title>Restaurant List</title>
   <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
   <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
-  </head>
+</head>
 
 </head>
 
@@ -18,12 +18,25 @@
     <!-- navigation -->
     <nav class='navbar navbar-light bg-light justify-content-between'>
       <div class='container'>
-        <a class='navbar-brand' href='/'>
+        <a class="navbar-brand" href="/">
           <img src='https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png'
             width='30' height='30' class='d-inline-block align-top' alt='我的餐廳清單' />
-          我的餐廳清單
+          {{#if isAuthenticated}}{{ user.name}}的{{/if}}
+          餐廳清單
         </a>
-        <a class="btn btn-outline-light btn-info" href='/restaurants/newItem'>新增餐廳</a>
+        <div>
+          
+          {{#if isAuthenticated}}
+          <a class="btn btn-outline-light btn-info" href='/restaurants/newItem'>新增餐廳</a>
+          <a href="/users/logout" class="btn btn-outline-light btn-info">Logout</a>
+          {{else}}
+          <a href="/users/login" class="btn btn-outline-light btn-info">Login</a>
+          {{/if}}
+
+
+          
+        </div>
+
 
       </div>
 
@@ -35,7 +48,7 @@
   <!-- partial templates will replace the part of "body" here -->
   {{!-- 使用{{{}}}表示以html傳入 --}}
   {{{body}}}
-
+  <script src="/javascripts/view.js"></script>
   <script src='/javascripts/popper.js'></script>
   <script src='/javascripts/bootstrap.js'></script>
   <script src='https://kit.fontawesome.com/e46dde4966.js' crossorigin='anonymous'></script>

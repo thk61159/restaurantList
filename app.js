@@ -21,6 +21,7 @@ app.set('view engine', 'hbs');
 app.set('views', './views');
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -33,13 +34,11 @@ usePassport(app);
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated;
   res.locals.user = req.user;
-  // res.locals.success_msg = req.flash('success_msg'); // 設定 success_msg 訊息
-  // res.locals.warning_msg = req.flash('warning_msg'); // 設定 warning_msg 訊息
   next();
 });
 //////////controller//////////
 app.use(routes);
-// start and listen on the Express server
+
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`);
 });
