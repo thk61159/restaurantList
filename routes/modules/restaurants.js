@@ -1,6 +1,4 @@
 const router = require('express').Router();
-
-
 const List = require('../../models/list');
 
 router.get('/newItem', (req, res) => {

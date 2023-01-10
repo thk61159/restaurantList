@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const List = require('../../models/list');
 router.get('/', (req, res) => {
   List.find()
@@ -17,14 +16,19 @@ router.get('/search', (req, res) => {
 router.get('/sort', (req, res) => {
   const sortMethod = req.query.sortMethod;
   let sortRule;
-  if (sortMethod === 'alphabet') {
-    sortRule = { name_en: 1 };
-  } else if (sortMethod === 'category') {
-    sortRule = { category: 1 };
-  } else if (sortMethod === 'region') {
-    sortRule = { location: 1 };
-  } else if (sortMethod === 'score') {
-    sortRule = { rating: -1 };
+  switch (sortMethod) {
+    case 'alphabet':
+      sortRule = { name_en: 1 };
+      break
+    case 'category':
+      sortRule = { category: 1 };
+      break
+    case 'region':
+      sortRule = { location: 1 };
+      break
+    case 'score':
+      sortRule = { rating: -1 };
+      break
   }
   List.find()
     .lean()
