@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const List = require('../../models/list');
 router.get('/', (req, res) => {
-  List.find()
+  const userId = req.user._id;
+  List.find({ userId })
     .lean()
     .then((list) => res.render('index', { list }))
     .catch((error) => console.error(error));
@@ -37,12 +38,5 @@ router.get('/sort', (req, res) => {
     .catch((error) => console.error(error));
 });
 
-// // http://localhost:3000/newItem
-// router.get('/newItem', (req, res) => {
-//   const { schema } = List;
-//   const { tree } = schema;
-//   const title = Object.keys(tree).slice(0, 9);
-//   console.log(tree);
-//   return res.render('new', { title });
-// });
+
 module.exports = router;

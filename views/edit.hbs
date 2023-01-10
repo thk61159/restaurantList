@@ -1,28 +1,46 @@
-<form action='/restaurants/{{list._id}}?_method=PUT' method='POST' class='col col-lg-6 mx-auto mt-5'>
+
+<form action='/restaurants/{{list._id}}?_method=PUT' method='POST'class='col col-lg-6 mx-auto mt-5'>
   <ul class='list-group'>
-    {{#each displayList}}
-    <li class='list-group-item d-flex'>
-      <h3 class='col col-lg-4'>{{@key}}</h3>
-      <input class='form-control' type='text' name='{{@key}}' value='{{this}}' required />
-    </li>
-    {{/each}}
-    <button class='btn btn-info' type='submit'>Save</button>
+    <li class="list-group-item ">
+  <label class="col col-lg-4">餐廳中文名稱</label>
+  <input type='text' name='name' placeholder='name_en' value='{{list.name}}'  size='40' required />
+</li>
+    <li class="list-group-item ">
+  <label class="col col-lg-4">餐廳英文名稱</label>
+  <input type='text' name='name_en' placeholder='name_en' value='{{list.name_en}}'  size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">餐廳種類</label>
+  <input type='text' name='category' placeholder='category' value='{{list.category}}' size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">餐廳圖片網址</label>
+  <input type='url' name='image' placeholder='image' value='{{list.image}}'  size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">餐廳地址</label>
+  <input type='text' name='location' placeholder='location' value='{{list.location}}' size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">餐廳電話</label>
+  <input type='number' name='phone' placeholder='phone' maxlength='10' value='{{list.phone}}' size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">Google地圖</label>
+  <input type='url' name='google_map' placeholder='google_map' value='{{list.google_map}}' size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">評分</label>
+  <input type='number' name='rating' placeholder='rating' value='{{list.rating}}' size='40' required />
+</li>
+<li class="list-group-item ">
+  <label class="col col-lg-4">餐廳簡介</label>
+  <input type='text' name='description' placeholder='description' value='{{list.description}}' size='40' required />
+</li>
+    <button class='btn btn-info' type='submit'>
+      save
+    </button>
   </ul>
 </form>
 
 
-
-{{!--我不想打字所以先留著
-<div><input type='text' name='name' placeholder='name' value='{{list.name}}' size='40' required /></div>
-<div><input type='text' name='name_en' placeholder='name_en' value='{{list.name_en}}' size='40' required /></div>
-<div><input type='text' name='category' placeholder='category' value='{{list.category}}' size='40' required /></div>
-<div><input type='text' name='image' placeholder='image' value='{{list.image}}' size='40' required /></div>
-<div><input type='text' name='location' placeholder='location' value='{{list.location}}' size='40' required /></div>
-<div>
-  <input type='text' name='phone' placeholder='phone' value='{{list.phone}}' size='40' required />
-</div>
-<div><input type='text' name='google_map' placeholder='google_map' value='{{list.google_map}}' size='40' required />
-</div>
-<div><input type='text' name='rating' placeholder='rating' value='{{list.rating}}' size='40' required /></div>
-<div><input type='text' name='description' placeholder='description' value='{{list.description}}' size='40' required />
-</div>  --}}

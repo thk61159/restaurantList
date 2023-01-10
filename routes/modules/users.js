@@ -50,6 +50,7 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+  //Error: req#logout requires a callback function search stackoverflow
   req.logout(req.user, (err) => {
     if (err) return next(err);
     res.redirect('/users/login/?note=已登出');

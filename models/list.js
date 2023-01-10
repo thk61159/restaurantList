@@ -37,8 +37,11 @@ const listSchema = new Schema({
     type: String,
     required: true,
   },
-  done: {
-    type: Boolean,
+  userId: {
+    type: Schema.Types.ObjectID,
+    ref: 'User',
+    index: true,
+    required: true,
   },
 });
 module.exports = mongoose.model('List', listSchema);

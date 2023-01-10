@@ -10,16 +10,19 @@ router.get('/newItem', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const id = req.params.id;
-  return List.findById(id)
+  const userId = req.user._id;
+  const _id = req.params.id;
+  
+  return List.findOne({ _id, userId })
     .lean()
     .then((list) => res.render('detail', { list }))
     .catch((error) => console.log(error));
 });
 
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id;
-  return List.findById(id)
+  const userId = req.user._id;
+  const _id = req.params.id;
+  return List.findOne({ _id, userId })
     .lean()
     .then((list) => {
       const displayList = { ...list };
@@ -31,8 +34,9 @@ router.get('/:id/edit', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  const userId = req.user._id;
   const reqBody = req.body;
-  const list = new List({ ...req.body });
+  const list = new List({ ...req.body, userId });
   return list
     .save()
     .then(() => res.redirect('/'))
@@ -40,8 +44,8 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id;
-  // const reqBody= req.body
+  const userId = req.user._id;
+  const _id = req.params.id;
   const {
     name,
     name_en,
@@ -53,7 +57,7 @@ router.put('/:id', (req, res) => {
     rating,
     description,
   } = req.body;
-  return List.findById(id)
+  return List.findOne({ _id, userId })
     .then((list) => {
       list.name = name;
       list.name_en = name_en;
@@ -66,13 +70,14 @@ router.put('/:id', (req, res) => {
       list.description = description;
       return list.save();
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch((error) => console.error(error));
 });
 
 router.delete('/:id', (req, res) => {
-  const id = req.params.id;
-  return List.findById(id)
+  const userId = req.user._id;
+  const _id = req.params.id;
+  return List.findOne({ _id, userId })
     .then((list) => list.remove())
     .then(() => res.redirect(`/`))
     .catch((error) => console.error(error));

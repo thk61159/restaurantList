@@ -1,6 +1,7 @@
 const restaurantJson = require('../../restaurant.json');
 const restaurantList = restaurantJson.results;
-const List = require('../list'); // 載入 todo model
+const List = require('../list'); 
+const User = require('../user'); 
 const db = require('../../config/mongoose');
 db.once('open', () => {
   restaurantList.forEach((element) => {
