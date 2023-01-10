@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
+
 
 const List = require('../../models/list');
-console.log(List);
-//localhost:3000/restaurants/newItem
+
 router.get('/newItem', (req, res) => {
   const { schema } = List;
   const { tree } = schema;
@@ -41,6 +40,7 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/'))
     .catch((error) => console.error(error));
 });
+
 router.put('/:id', (req, res) => {
   const id = req.params.id;
   // const reqBody= req.body
