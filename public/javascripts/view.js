@@ -22,8 +22,8 @@ register.addEventListener('submit', function (event) {
   const confirmPassword = document.querySelector('#confirmPassword');
   
   
-  if (!(password.value && confirmPassword.value && name.value && email.value)) {
-    note.textContent = '所有欄位都是必填。';
+  if (!(password.value && confirmPassword.value && email.value)) {
+    note.textContent = '信箱跟密碼為必填欄位。'
   } else if (impairedPassword(confirmPassword.value, password.value)) {
     note.textContent = '請確認兩次輸入密碼相同';
   } else {
