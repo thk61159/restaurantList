@@ -9,6 +9,9 @@
 5. 編輯餐廳
 6. 刪除餐廳
 7. 排序功能
+8. 註冊登入登出
+9. facebook帳號第三方登入
+10. 擁有專屬帳號並能儲存
 
 ## 使用介面
 ![alt 使用介面圖示](https://raw.githubusercontent.com/thk61159/AC-restaurantList/master/%E9%A4%90%E5%BB%B3CRUD%20improved.png "我的餐廳清單使用介面")
@@ -24,22 +27,17 @@ MONGODB_URI=mongodb+srv://使用者帳號:使用者密碼@資料庫伺服器位�
 4. 進入此專案資料夾，安裝各種套件
 ```shell
  cd restaurantList
- npm install -g nodemon //只需安裝一次
- npm install express@4.16.4
- npm i express-handlebars@6.0.6
- npm i mongoose@5.9.7
- npm i dotenv -D
- npm install method-override@3.0.0
+ npm install
 ```
 5. 建立.env檔並輸入
-MONGODB_URI=mongodb+srv://使用者帳號:使用者密碼@資料庫伺服器位置ip/你建立的資料庫名稱?retryWrites=true&w=majority
+需要設定的參數請參照.env.example檔
 6. 新增種子資料(可省略)
 ```shell
-node models/seeds/listSeeder.js
+npm run seed
 ```
 3. 運行我的餐廳清單
 ```shell
- nodemon app.js
+ npm run start
 ```
 4. 拜訪我的餐廳清單網頁
 ```shell
@@ -54,6 +52,7 @@ node models/seeds/listSeeder.js
 * MongoDB
 * mongoose v5.9.7
 * method-override v3.0.0
+* passport
 
 ##參考
 * [餐廳列表](https://drive.google.com/open?id=1W-BD9-c8zJRYCwAD8yhqQdLwcUdN8GZi)
