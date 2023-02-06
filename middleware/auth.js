@@ -3,7 +3,8 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     } else {
-      res.redirect('/users/login/?note=請先登入才能使用!');
+      req.session.messages = '請先登入才能使用!'
+      res.redirect('/users/login');
     }
     
     

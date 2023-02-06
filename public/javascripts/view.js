@@ -16,7 +16,6 @@ const register = document.querySelector('.register');
 register.addEventListener('submit', function (event) {
   console.log('test')
   event.preventDefault();
-  const name = document.querySelector('#name');
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
   const confirmPassword = document.querySelector('#confirmPassword');

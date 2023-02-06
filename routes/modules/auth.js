@@ -14,6 +14,7 @@ router.get(
   passport.authenticate('facebook', {
     successRedirect: '/',
     failureRedirect: '/users/login',
+    failureMessage:true
   })
 );
 module.exports = router;

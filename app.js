@@ -32,6 +32,10 @@ app.use(
 
 usePassport(app);
 app.use((req, res, next) => {
+  let msgs = req.session.messages || []
+  res.locals.messages = msgs
+	res.locals.hasMessages = !!msgs.length
+	req.session.messages = []
   res.locals.isAuthenticated = req.isAuthenticated;
   res.locals.user = req.user;
   next();

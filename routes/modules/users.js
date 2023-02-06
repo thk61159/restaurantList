@@ -4,14 +4,14 @@ const passport = require('passport'); //POST login authenticator
 const bcrypt = require('bcryptjs'); //POST register hash password
 
 router.get('/login', (req, res) => {
-  const { note } = req.query;
-  res.render('login', { note });
+  res.render('login');
 });
 router.post(
   '/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login/?note=帳號或密碼錯誤',
+    failureRedirect: '/users/login',
+    failureMessage: true
   })
 );
 router.get('/register', (req, res) => {
@@ -22,14 +22,13 @@ router.post('/register', (req, res) => {
   
   User.findOne({ email })
     .then((e) => {
-      console.log(e);
       if (e) {
-        res.locals.note = 'email has been registed!!';
         return res.render('register', {
           name,
           email,
           password,
           confirmPassword,
+          note: 'email has been registed!!'
         });
       } else {
         return bcrypt
@@ -53,7 +52,8 @@ router.get('/logout', (req, res) => {
   //Error: req#logout requires a callback function search stackoverflow
   req.logout(req.user, (err) => {
     if (err) return next(err);
-    res.redirect('/users/login/?note=已登出');
+    req.session.messages = '已登出'
+    res.redirect('/users/login');
   });
 });
 module.exports = router;
