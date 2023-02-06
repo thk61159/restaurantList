@@ -9,10 +9,10 @@ router.get('/', (req, res) => {
 });
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim();
-  List.find({ name: new RegExp(keyword, 'i') })
-    .lean()
-    .then((list) => res.render('index', { list, keyword }))
-    .catch((error) => console.error(error));
+  List.find({ userId: req.user._id, name: new RegExp(keyword, 'i') })
+		.lean()
+		.then(list => res.render('index', { list, keyword }))
+		.catch(error => console.error(error))
 });
 router.get('/sort', (req, res) => {
   const sortMethod = req.query.sortMethod;
@@ -31,11 +31,11 @@ router.get('/sort', (req, res) => {
       sortRule = { rating: -1 };
       break
   }
-  List.find()
-    .lean()
-    .sort(sortRule)
-    .then((list) => res.render('index', { list, sortMethod }))
-    .catch((error) => console.error(error));
+  List.find({ userId:req.user._id })
+		.lean()
+		.sort(sortRule)
+		.then(list => res.render('index', { list, sortMethod }))
+		.catch(error => console.error(error))
 });
 
 

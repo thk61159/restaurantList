@@ -35,7 +35,6 @@ router.get('/:id/edit', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.user._id;
-  const reqBody = req.body;
   const list = new List({ ...req.body, userId });
   return list
     .save()
