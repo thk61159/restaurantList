@@ -22,6 +22,7 @@ router.post('/register', (req, res) => {
   
   User.findOne({ email })
     .then((e) => {
+      console.log(e)
       if (e) {
         return res.render('register', {
           name,
