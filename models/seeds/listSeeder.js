@@ -1,4 +1,4 @@
-const restaurantJson = require('../../restaurant.json')
+const restaurantJson = require('.restaurant.json')
 const restaurantList = restaurantJson.results
 const List = require('../list')
 const User = require('../user')
